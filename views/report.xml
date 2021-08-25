@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="camaracomercio_contrasenia"
+            string="Contraseña de pago"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="camaracomercio.reporte_contrasenia"
+            name="camaracomercio.reporte_contrasenia"
+        />
+
+    </data>
+</odoo>

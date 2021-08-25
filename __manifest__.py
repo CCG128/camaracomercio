@@ -18,5 +18,7 @@
 
     'data': [
         'views/product_template_views.xml',
+        'views/reporte_contrasenia.xml',
+        'views/report.xml',
     ],
 }
