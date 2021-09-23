@@ -14,10 +14,14 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['account','product'],
+    'depends': ['account','product','contacts'],
 
     'data': [
+        'security/camaracomercio_security.xml',
         'views/product_template_views.xml',
+        'views/camaracomercio_views.xml',
+        'views/res_partner_view.xml',
+        'security/ir.model.access.csv',
         'views/reporte_contrasenia.xml',
         'views/report.xml',
     ],

@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="camaracomercio_view_res_partner_form">
+            <field name="name">camaracomercio.view.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <page name="internal_notes" position="after">
+                    <page name="afiliacion" string="Afiliación">
+                        <group>
+                            <field name="estado" readonly="True"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="camaracomercio_read_view_res_partner_form">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="camaracomercio.camaracomercio_view_res_partner_form" />
+            <field name="groups_id" eval="[(6, 0, [ref('camaracomercio.group_camaracomercio_servicio_cliente')])]"/>
+            <field name="arch" type="xml">
+                <field name="estado" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
