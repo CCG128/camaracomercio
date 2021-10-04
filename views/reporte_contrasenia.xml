@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="reporte_contrasenia">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="article">
+                    <div class="page">
+
+                        <div align="center" class="header">
+                            <img t-if="o.user_id.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.user_id.company_id.logo)" style="width:245px;height:72px;"/>
+                        </div>
+                        <div class="page">
+                            <table class="table table-condensed" style="border: 1px solid black;">
+                                <t t-set="fecha" t-value="fecha_actual()"/>
+                                <tr>
+                                    <td style="border-top: 1px solid black;"/>
+                                    <td style="border-top: 1px solid black;font-size:130%"><b><span t-field="o.company_id.name"/></b></td>
+                                    <td style="border-top: 1px solid black;"/>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h4><b>CONTRASEÑA DE PAGO <span t-field="o.name"/></b></h4></td>
+                                </tr>
+                                <tr>
+                                    <td/>
+                                    <td/>
+                                    <td style="width:150px;" align="center"><tt>Guatemala, <span t-field="o.invoice_date"/></tt></td>
+                                </tr>
+                                <tr>
+                                    <td><tt>RECIBI DE:</tt></td>
+                                    <td style="border-bottom: 1px solid black;"><tt><span t-field="o.partner_id.name"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><tt>FACTURA No:</tt></td>
+                                    <td style="border-bottom: 1px solid black;"><tt><span t-field="o.ref"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><tt>POR VALOR DE:</tt></td>
+                                    <td style="border-bottom: 1px solid black;"><tt><span t-field="o.amount_total"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:200px"><tt>PARA PAGAR EL DIA:</tt></td>
+                                    <td style="border-bottom: 1px solid black;width:200px;"><tt><span t-field="o.invoice_date_due"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><tt><span t-esc="fecha"/></tt></td>
+                                    <td></td>
+                                    <td align="center"><p><span t-field="o.user_id.name"/></p></td>
+                                </tr>
+                            </table>
+
+                            <hr/>
+                            <table class="table table-condensed" >
+                                <t t-set="fecha" t-value="fecha_actual()"/>
+                                <tr>
+                                    <td style="border-top: 1px solid black;"/>
+                                    <td style="border-top: 1px solid black;font-size:130%;"><b><span t-field="o.company_id.name"/></b></td>
+                                    <td style="border-top: 1px solid black;"/>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><h4><b>CONTRASEÑA DE PAGO <span t-field="o.name"/></b></h4></td>
+                                </tr>
+                                <tr>
+                                    <td/>
+                                    <td/>
+                                    <td style="width:150px;" align="center"><tt>Guatemala, <span t-field="o.invoice_date"/></tt></td>
+                                </tr>
+                                <tr>
+                                    <td><tt>RECIBI DE:</tt></td>
+                                    <td style="border-bottom: 1px solid black;"><tt><span t-field="o.partner_id.name"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><tt>FACTURA No:</tt></td>
+                                    <td style="border-bottom: 1px solid black;"><tt><span t-field="o.ref"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><tt>POR VALOR DE:</tt></td>
+                                    <td style="border-bottom: 1px solid black;"><tt><span t-field="o.amount_total"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="width:200px"><tt>PARA PAGAR EL DIA:</tt></td>
+                                    <td style="border-bottom: 1px solid black;width:200px;"><tt><span t-field="o.invoice_date_due"/></tt></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><tt><span t-esc="fecha"/></tt></td>
+                                    <td></td>
+                                    <td align="center"><p><span t-field="o.user_id.name"/></p></td>
+                                </tr>
+                            </table>
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black;"><tt>Cuenta</tt></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black;"><tt>Analitica</tt></td>
+                                    <td style="border-top: 1px solid black;border-bottom: 1px solid black;"><tt>Descripcion</tt></td>
+                                    <td class="text-right" style="border-top: 1px solid black;border-bottom: 1px solid black;"><tt>Cargos</tt></td>
+                                    <td class="text-right" style="border-top: 1px solid black;border-bottom: 1px solid black;"><tt>Abonos</tt></td>
+                                </tr>
+                                <t t-set="result" t-value="movimientos(o)"/>
+
+                                <tr t-foreach="result['datos']" t-as="l">
+                                    <td><b><tt><span t-esc="l['code']"/></tt></b></td>
+                                    <td><b><tt><span t-esc="l['analitica']"/></tt></b></td>
+                                    <td><b><tt><span t-esc="l['name']"/></tt></b></td>
+                                    <td class="text-right"><b><tt><span t-esc="l['debit']" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></tt></b></td>
+                                    <td class="text-right"><b><tt><span t-esc="l['credit']" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></tt></b></td>
+                                </tr>
+                                <tr t-foreach="result['totales']" t-as="t">
+                                    <td/>
+                                    <td/>
+                                    <td class="text-right"><tt>SUMAS IGUALES:</tt></td>
+                                    <td class="text-right" style="border-top: 1px solid black;"><b><tt><span t-esc="t['debit']" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></tt></b></td>
+                                    <td class="text-right" style="border-top: 1px solid black;"><b><tt><span t-esc="t['credit']" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></tt></b></td>
+                                </tr>
+                            </table>
+                            <p><tt><span t-field="o.narration"/></tt></p>
+                        </div>
+
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

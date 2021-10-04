@@ -3,6 +3,15 @@
     <data>
 
         <report
+            id="camaracomercio_contrasenia"
+            string="Contraseña de pago"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="camaracomercio.reporte_contrasenia"
+            name="camaracomercio.reporte_contrasenia"
+        />
+      
+        <report
             id="camaracomercio_account_payment1"
             string="Voucher 1"
             model="account.payment"

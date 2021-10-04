@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+    <record id="group_camaracomercio_servicio_cliente" model="res.groups">
+        <field name="name">Servicio al cliente</field>
+    </record>
+    
+</data>
+</odoo>
