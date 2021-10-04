@@ -5,15 +5,14 @@
             <field name="name">camaracomercio.view.partner.form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
-            <field name="type">form</field>
             <field name="arch" type="xml">
-                <page name="internal_notes" position="after">
+                <xpath expr="//notebook" position="inside">
                     <page name="afiliacion" string="Afiliación">
                         <group>
                             <field name="estado" readonly="True"/>
                         </group>
                     </page>
-                </page>
+                </xpath>
             </field>
         </record>
 
@@ -25,6 +24,54 @@
                 <field name="estado" position="attributes">
                     <attribute name="readonly">False</attribute>
                 </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="camaracomercio_read_estado_view_res_partner_form">
+            <field name="name">camaracomercio.read.view.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="groups_id" eval="[(6, 0, [ref('camaracomercio.group_camaracomercio_servicio_cliente')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='team_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_payment_term_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_product_pricelist']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_supplier_payment_term_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_account_position_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='industry_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_stock_customer']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_stock_supplier']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//group[@name='sale']//field[@name='user_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='bank_ids']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_account_receivable_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='property_account_payable_id']" position="attributes">
+                    <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
+                </xpath>
             </field>
         </record>
 
