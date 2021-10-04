@@ -30,7 +30,7 @@ class AccountMove(models.Model):
     def verificar_estado_cliente(self,fecha_factura,partner_id):
         dias_retraso = 0
         facturas_ids = self.env['account.move'].search([('move_type','=','out_invoice'),('state','=','posted'),('partner_id','=',partner_id.id),('amount_residual','>',0)])
-        estado_tarifa_ids = self.env['camaracomercio.config.estado'].search([('tarifa_id','=',partner_id.property_product_pricelist.id),('bloquear_cliente','=',True)])
+        estado_tarifa_ids = self.env['camaracomercio.config.estado'].search([('tarifa_id','=',partner_id.property_product_pricelist.id),('estado','=', partner_id.estado),('bloquear_cliente','=',True)])
         if facturas_ids and estado_tarifa_ids:
             for factura in facturas_ids:
                 if factura.invoice_payment_term_id:

@@ -8,7 +8,6 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     estado = fields.Selection([ ('no_afiliado', 'No afiliado'),
-        ('afiliado', 'Afiliado'),
         ('afiliado_activo', 'Afiliado / Activo'),
         ('afiliado_moroso', 'Afiliado / Moroso'),
         ('afiliado_retirar', 'Afiliado / Por retirar')],'Estado', default='no_afiliado')
