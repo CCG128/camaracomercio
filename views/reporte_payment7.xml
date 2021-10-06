@@ -9,20 +9,20 @@
           <t t-foreach="docs" t-as="o">
               <div class="page">
 
-                   <div style="font-size: 130%; position: absolute; top: 2cm; left: 9.5cm">
+                   <div style="font-size: 130%; position: absolute; top: 3.3cm; left: 4cm">
                       GUATEMALA, <span t-field="o.date"/>
                   </div>
-                  <div style="font-size: 130%; position: absolute; top: 2cm; left: 24.5cm">
+                  <div style="font-size: 130%; position: absolute; top: 3.3cm; left: 20cm">
                       <span t-esc="'{0:,.2f}'.format(o.amount)"/>
                   </div>
 
-                  <div style="font-size: 130%; position: absolute; top: 3cm; left: 8cm; width: 18.5cm">
+                  <div style="font-size: 130%; position: absolute; top: 4cm; left: 4cm; width: 18.5cm">
                       <span t-esc="o.nombre_impreso or o.partner_id.name"/>
                   </div>
-                  <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 3.9cm; left: 8cm; width: 20cm">
+                  <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 4.9cm; left: 4cm; width: 20cm">
                       <span t-esc="a_letras(o.amount)"/>
                   </div>
-                  <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 5.4cm; left: 9.9cm">
+                  <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 7.9cm; left: 4cm">
                       <span>NO  NEGOCIABLE</span>
                   </div>
                   
@@ -132,7 +132,7 @@
                   
                   
                   <div style="font-size: 130%; position: absolute; top: 30cm; left: 21.5cm; width: 8cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      RECIVIDO POR
+                      RECIBIDO POR
                   </div>
                    <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
                       NOMBRE
