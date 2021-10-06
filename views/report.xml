@@ -13,7 +13,7 @@
       
         <report
             id="camaracomercio_account_payment1"
-            string="Voucher 1"
+            string="VOUCHER BI CONTINUO"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment1"
@@ -22,7 +22,7 @@
 
         <report
             id="camaracomercio_account_payment2"
-            string="Voucher 2"
+            string="VOUCHER GT CONTINUO"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment2"
@@ -31,7 +31,7 @@
 
         <report
             id="camaracomercio_account_payment3"
-            string="Voucher 3"
+            string="VOUCHER BANURAL CONTINUO 62-4"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment3"
@@ -40,7 +40,7 @@
 
         <report
             id="camaracomercio_account_payment4"
-            string="Voucher 4"
+            string="VOUCHER BAC CONTINUO 84-4"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment4"
@@ -49,7 +49,7 @@
 
         <report
             id="camaracomercio_account_payment5"
-            string="Voucher 5"
+            string="VOUCHER BAC CONTINUO 95-5"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment5"
@@ -58,7 +58,7 @@
         
         <report
             id="camaracomercio_account_payment6"
-            string="Voucher 6"
+            string="VOUCHER BANTRAB CONTINUO 233-0"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment6"
@@ -67,7 +67,7 @@
         
         <report
             id="camaracomercio_account_payment7"
-            string="Voucher 7"
+            string="VOUCHER CHEQUE TALONARIO"
             model="account.payment"
             report_type="qweb-pdf"
             file="camaracomercio.reporte_account_payment7"
