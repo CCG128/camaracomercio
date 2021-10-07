@@ -24,7 +24,7 @@ class Event(models.Model):
             if evento.sale_price_subtotal > 0:
                 margen = (evento.sale_price_subtotal-compra_subtotal_evento) / evento.sale_price_subtotal
             evento.utilidad = utilidad
-            evento.margen = margen
+            evento.margen = margen * 100
             evento.compra_subtotal = compra_subtotal_evento
 
 class EventType(models.Model):
