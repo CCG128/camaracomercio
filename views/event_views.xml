@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="act_compras" model="ir.actions.act_window">
+      <field name="name">Compras</field>
+      <field name="res_model">purchase.order</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain"> [('evento_id', 'in', [active_id])] </field>
+      <field name="context"></field>
+  </record>
+
+    <record id="camaracomercio_view_event_form_inherit_ticket" model="ir.ui.view">
+        <field name="name">camaracomercio.event.form.inherit</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="%(act_compras)d"
+                        type="action" class="oe_stat_button" icon="fa-dollar"
+                        help="Total de compras para este evento"
+                        attrs="{'invisible': ['|', ('compra_subtotal', '=', 0), ('compra_subtotal', '=', False)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field string="Compras" name="compra_subtotal"
+                                widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </span>
+                        <span class="o_stat_text">Compras</span>
+                    </div>
+                </button>
+            </xpath>
+            <field name="tag_ids" position="after">
+                <field name="utilidad"/>
+                <field name="margen"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="camaracomercio_view_event_tree">
+        <field name="name">camaracomercio.event.event.tree</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_tree"/>
+        <field name="arch" type="xml">
+            <field name="date_end" position="after">
+                <field name="utilidad"/>
+                <field name="margen"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="camaracomercio_view_event_type_form">
+        <field name="name">camaracomercio.event.type.form</field>
+        <field name="model">event.type</field>
+        <field name="inherit_id" ref="event.view_event_type_form"/>
+        <field name="arch" type="xml">
+            <div name="event_type_visibility" position="after">
+                <h2>Miembros</h2>
+                <div class="row mt16 o_settings_container" name="tipo_evento_conf_miebros">
+                    <div class="col-12 col-lg-6 o_setting_box" name="tipo_evento_miembros">
+                        <div class="o_setting_left_pane">
+                            <field name="miembros"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="miembro_ids"/>
+                            <div class="row">
+                                <div class="col-lg-8 mt16" attrs="{'invisible': [('miembros', '=', False)]}">
+                                    <div>
+                                        <!-- <label for="miembro_ids"/> -->
+                                        <field name="miembro_ids">
+                                            <tree editable="bottom">
+                                                <field name="categoria_cliente"/>
+                                                <field name="cantidad"/>
+                                            </tree>
+                                        </field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+
+</odoo>

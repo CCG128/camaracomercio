@@ -2,3 +2,5 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_camaracomercio_config_estado_servico,camara.comercio.config.estado.servicio,camaracomercio.model_camaracomercio_config_estado,camaracomercio.group_camaracomercio_servicio_cliente,1,1,1,1
 access_camaracomercio_config_estado_usuario,camara.comercio.config.estado.usuario,camaracomercio.model_camaracomercio_config_estado,base.group_user,1,0,0,0
 access_camaracomercio_config_estado_admin,camara.comercio.config.estado.admin,camaracomercio.model_camaracomercio_config_estado,base.group_system,1,1,1,1
+access_camaracomercio_config_miembro_admin,camara.comercio.config.miembro.admin,camaracomercio.model_camaracomercio_config_miembros,base.group_system,1,1,1,1
+access_camaracomercio_config_miembro_user,camara.comercio.config.miembro.user,camaracomercio.model_camaracomercio_config_miembros,base.group_user,1,0,0,0
