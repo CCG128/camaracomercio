@@ -14,13 +14,14 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['account','product','contacts','purchase','event_sale'],
+    'depends': ['account','product','contacts','purchase','event_sale','helpdesk'],
 
     'data': [
         'security/camaracomercio_security.xml',
         'views/product_template_views.xml',
         'views/purchase_views.xml',
         'views/camaracomercio_views.xml',
+        'views/helpdesk_views.xml',
         'views/event_views.xml',
         'views/res_partner_view.xml',
         'security/ir.model.access.csv',
