@@ -19,6 +19,7 @@
     'data': [
         'security/camaracomercio_security.xml',
         'views/product_template_views.xml',
+        'views/product_views.xml',
         'views/purchase_views.xml',
         'views/camaracomercio_views.xml',
         'views/helpdesk_views.xml',
