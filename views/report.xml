@@ -82,6 +82,15 @@
             file="camaracomercio.reporte_account_payment8"
             name="camaracomercio.reporte_account_payment8"
         />
+        
+        <report
+            id="camaracomercio_factura_electronica"
+            string="Factura Electrónica"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="camaracomercio.report_factura_electronica"
+            name="camaracomercio.report_factura_electronica"
+        />
 
     </data>
 </odoo>

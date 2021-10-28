@@ -51,4 +51,9 @@ class ReportContrasenia(models.AbstractModel):
             'docs': docs,
             'movimientos': self.movimientos,
             'fecha_actual': self.fecha_actual,
+            'a_letras': odoo.addons.l10n_gt_extra.a_letras,
         }
+
+class ReportFacturaElectronica(models.AbstractModel):
+    _name = 'report.camaracomercio.report_factura_electronica'
+    _inherit = 'report.camaracomercio.reporte_contrasenia'

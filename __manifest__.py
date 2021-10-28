@@ -36,5 +36,6 @@
         'views/reporte_payment7.xml',
         'views/reporte_payment8.xml',
         'views/report.xml',
+        'views/report_factura_electronica.xml',
     ],
 }
