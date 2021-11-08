@@ -42,3 +42,19 @@ class AccountMove(models.Model):
                         if dias_retraso >= estado_tarifa.dias:
                             raise UserError(_('Usuario bloqueado, existen facturas con dias dias de retraso mayor igual a '+ str(estado_tarifa.dias)))
         return True
+
+    def calcular_impuesto_isr(self):
+        logging.warning('ISR')
+        for factura in self:
+            tipo_cambio = 0
+            if factura.currency_id.name == 'USD' and factura.invoice_date:
+                moneda_gtq_id = self.env['res.currency'].search([('name','=','GTQ')])
+                tipo_cambio = moneda_gtq_id._get_rates(factura.company_id, factura.invoice_date)
+                if tipo_cambio:
+                    iterador = iter(tipo_cambio)
+                    primera_llave = next(iterador)
+                    tipo_cambio = tipo_cambio[primera_llave]
+                    for linea in factura.invoice_line_ids:
+                        if linea.tax_ids:
+                            factura.with_context({'tipo_cambio' : tipo_cambio}).write({ 'invoice_line_ids': [[1, linea.id, { 'tax_ids': linea.tax_ids }]] })
+        return True

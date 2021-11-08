@@ -25,6 +25,7 @@
         'views/helpdesk_views.xml',
         'views/event_views.xml',
         'views/res_partner_view.xml',
+        'views/account_view.xml',
         'security/ir.model.access.csv',
         'views/reporte_contrasenia.xml',
         'views/reporte_payment1.xml',
