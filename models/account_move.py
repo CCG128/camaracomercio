@@ -44,7 +44,6 @@ class AccountMove(models.Model):
         return True
 
     def calcular_impuesto_isr(self):
-        logging.warning('ISR')
         for factura in self:
             tipo_cambio = 0
             if factura.currency_id.name == 'USD' and factura.invoice_date:
