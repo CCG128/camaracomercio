@@ -2,7 +2,7 @@
 
 from odoo import api, models
 import re
-import odoo.addons.l10n_gt_extra.a_letras
+from odoo.addons.l10n_gt_extra import a_letras
 import logging
 from datetime import date
 import datetime
@@ -39,6 +39,9 @@ class ReportContrasenia(models.AbstractModel):
         hoy = datetime.datetime.now()
         hoy = hoy.strftime('%Y/%m/%d %H:%M:%S %p')
         return hoy
+    
+    def a_letras(self,monto):
+        return a_letras.num_a_letras(monto)
 
     @api.model
     def _get_report_values(self, docids, data=None):
@@ -51,7 +54,7 @@ class ReportContrasenia(models.AbstractModel):
             'docs': docs,
             'movimientos': self.movimientos,
             'fecha_actual': self.fecha_actual,
-            'a_letras': odoo.addons.l10n_gt_extra.a_letras,
+            'a_letras': self.a_letras,
         }
 
 class ReportFacturaElectronica(models.AbstractModel):
