@@ -20,8 +20,8 @@
                                <table style="width:100%">
                                    <tr>
                                        <td colspan="2" style="text-align: center; border: 1px solid white; border-radius: 7px; background-color: #92241c; color: white;"><b>Documento Tributario Electrónico<br/>
-                                           <span t-if="o.type == 'out_invoice'">Invoice</span>
-                                           <span t-if="o.type == 'out_refund'">Credit Note</span>
+                                           <span t-if="o.move_type == 'out_invoice'">Invoice</span>
+                                           <span t-if="o.move_type == 'out_refund'">Credit Note</span>
                                            <br/></b></td>
                                    </tr>
                                    <tr>
@@ -68,7 +68,7 @@
                         </tr>
                     </table>
                     
-                    <div style="min-height: 18cm; border: 1px solid black; border-radius: 7px; width: 100%; position: relative;">
+                    <div style="min-height: 17cm; border: 1px solid black; border-radius: 7px; width: 100%; position: relative;">
                         <table style="width: 100%">
                             <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
                             <t t-foreach="lines" t-as="line">
@@ -95,7 +95,7 @@
                                     <td style="text-align: right;"><span t-field="o.amount_tax"/></td>
                                 </tr>
                                 <tr style="font-size: smaller;">
-                                    <td colspan="2" style="width: 9%"><span t-if="o.type == 'out_invoice'">Sujeto a pagos trimestrales ISR</span></td>
+                                    <td colspan="2" style="width: 9%"><span t-if="o.move_type == 'out_invoice'">Sujeto a pagos trimestrales ISR</span></td>
                                 </tr>
                             </table>
                         </div>
@@ -104,7 +104,7 @@
                     <div>
                         <table style="width: 100%">
                             <tr style="font-size: smaller;">
-                                <td style="width: 74%">Total en Letras: <span t-esc="a_letras.num_a_letras(o.amount_total)"/></td>
+                                <td style="width: 74%">Total en Letras: <span t-esc="a_letras(o.amount_total)"/></td>
                                 <td style="width: 13%; border: 1px solid #92241c; background-color: #92241c; color: white; border-radius: 7px 0px 0px 7px;"><b>Total</b></td>
                                 <td style="text-align: right; width: 13%: border: 1px solid #92241c; background-color: #92241c; color: white; border-radius: 0px 7px 7px 0px;"><b><span t-field="o.amount_total"/></b></td>
                             </tr>
@@ -130,7 +130,7 @@
         <template id="camaracomercio.report_factura_electronica">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
-                    <t t-set="lang" t-value="o.invoice_user_id.sudo().lang if o.type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
+                    <t t-set="lang" t-value="o.invoice_user_id.sudo().lang if o.move_type in ('in_invoice', 'in_refund') else o.partner_id.lang"/>
                     <t t-call="camaracomercio.factura_electronica_document" t-lang="lang"/>
                 </t>
             </t>
