@@ -5,6 +5,10 @@
     <record id="group_camaracomercio_servicio_cliente" model="res.groups">
         <field name="name">Servicio al cliente</field>
     </record>
-    
+
+    <record id="group_camaracomercio_bloquear_edi_contacto" model="res.groups">
+        <field name="name">Bloquear edición contactos</field>
+    </record>
+
 </data>
 </odoo>
