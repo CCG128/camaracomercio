@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
 
@@ -10,6 +9,9 @@
                 <button name="button_draft" position="after">
                     <button name="calcular_impuesto_isr" id="calcular_impuesto_isr" string="Calcular ISR" class="btn-primary" type="object"/>
                 </button>
+                <group name="sale_info_group" position="inside">
+                    <field name="cobrador_id"/>
+                </group>
             </field>
         </record>
 
