@@ -42,7 +42,7 @@ class ReportContrasenia(models.AbstractModel):
     
     def a_letras(self,monto):
         return a_letras.num_a_letras(monto)
-
+    
     @api.model
     def _get_report_values(self, docids, data=None):
         model = 'account.move'
@@ -60,3 +60,4 @@ class ReportContrasenia(models.AbstractModel):
 class ReportFacturaElectronica(models.AbstractModel):
     _name = 'report.camaracomercio.report_factura_electronica'
     _inherit = 'report.camaracomercio.reporte_contrasenia'
+    
