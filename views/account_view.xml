@@ -1,11 +1,14 @@
 <odoo>
     <data>
 
-        <record model="ir.ui.view" id="camaracomercio_view_move_form">
+        <record id="camaracomercio_view_move_form" model="ir.ui.view">
             <field name="name">camaracomercio.account.move.form</field>
             <field name="model">account.move</field>
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
+                <button name="button_draft" position="after">
+                    <button name="calcular_impuesto_isr" id="calcular_impuesto_isr" string="Calcular ISR" class="btn-primary" type="object"/>
+                </button>
                 <group name="sale_info_group" position="inside">
                     <field name="cobrador_id"/>
                 </group>
