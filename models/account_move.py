@@ -9,7 +9,7 @@ import logging
 class AccountMove(models.Model):
     _inherit = "account.move"
     
-    cobrador_id = fields.Many2one('res.partner','Cobrador', related='partner_id.cobrador_id')
+    cobrador_id = fields.Many2one('hr.employee','Cobrador', related='partner_id.cobrador_id')
 
     def action_post(self):
         res = super(AccountMove, self).action_post()
