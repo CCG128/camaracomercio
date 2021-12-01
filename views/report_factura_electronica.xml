@@ -45,7 +45,7 @@
                             </tr>
                             <tr style="font-size: smaller;">
                                 <td> Dirección: </td>
-                                <td colspan="3"><span t-field="o.partner_id.contact_address"/></td>
+                                <td colspan="3"><span t-field="o.partner_id.contact_address_complete"/></td>
                                 <td> Código: </td>
                                 <td><span t-field="o.partner_id.ref"/></td>
                             </tr>
@@ -87,11 +87,7 @@
                                         <td style="text-align: right; width: 26%"><span t-field="o.amount_untaxed"/></td>
                                     </tr>
                                     <tr style="font-size: smaller;">
-                                        <td style="text-align: right;">(-)Descuento</td>
-                                        <td style="text-align: right;"></td>
-                                    </tr>
-                                    <tr style="font-size: smaller;">
-                                        <td style="text-align: right;">TP</td>
+                                        <td style="text-align: right;">Impuestos</td>
                                         <td style="text-align: right;"><span t-field="o.amount_tax"/></td>
                                     </tr>
                                     <tr style="font-size: smaller;">

@@ -11,7 +11,7 @@ class ResPartner(models.Model):
         ('afiliado_moroso', 'Afiliado / Moroso'),
         ('afiliado_retirar', 'Afiliado / Por retirar')],'Estado', default='no_afiliado')
         
-    cobrador_id = fields.Many2one('res.partner','Cobrador')
+    cobrador_id = fields.Many2one('hr.employee','Cobrador')
 
     @api.onchange('estado')
     def _onchange_estado(self):
