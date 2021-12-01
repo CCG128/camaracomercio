@@ -39,7 +39,7 @@
                         <table style="border: 1px solid black; border-radius: 7px;page-break-inside:avoid">
                             <tr style="font-size: smaller;">
                                 <td style="width: 13%;"> Nombre: </td>
-                                <td colspan="3" ><span t-field="o.partner_id.parent_id"/></td>
+                                <td colspan="3" ><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.name"/></td>
                                 <td style="width: 7%;"> Nit: </td>
                                 <td style="width: 17%;"><span t-field="o.partner_id.vat"/></td>
                             </tr>
