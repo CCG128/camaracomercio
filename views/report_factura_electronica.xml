@@ -76,7 +76,7 @@
                                         <td style="width: 9%"><span t-field="line.quantity"/></td>
                                         <td style="width: 65%"><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
                                         <td style="width: 13%"><span t-field="line.price_unit"/></td>
-                                        <td style="width: 13%"><span class="text-nowrap" t-field="line.price_subtotal"/></td>
+                                        <td style="width: 13%"><span class="text-nowrap" t-field="line.price_total"/></td>
                                     </tr>
                                 </t>
                             </table>
