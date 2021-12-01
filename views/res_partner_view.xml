@@ -13,9 +13,13 @@
                         </group>
                     </page>
                 </xpath>
-                <field name="x_studio_das_de_crdito" position="after">
-                    <field name="cobrador_id"/>
-                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page name="datos_cobro" string="Datos de Cobro">
+                        <group>
+                            <field name="cobrador_id"/>
+                        </group>
+                    </page>
+                </xpath>
             </field>
         </record>
 
