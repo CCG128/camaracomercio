@@ -13,7 +13,7 @@
                         </group>
                     </page>
                 </xpath>
-                <field name="x_studio_horas_de_pago" position="after">
+                <field name="x_studio_das_de_crdito" position="after">
                     <field name="cobrador_id"/>
                 </field>
             </field>
