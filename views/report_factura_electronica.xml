@@ -37,7 +37,7 @@
                             </div> 
                         </div>
                     </div>
-                    <div class="page" style="page-break-inside: always">
+                    <div class="page" style="page-break-after: always">
                         <div style="border: 1px solid black; border-radius: 7px; width: 100%; position: relative; page-break-inside:avoid">
                             <table style="width: 100%;">
                                 <tr style="font-size: smaller;">
@@ -117,7 +117,7 @@
                                     <td style="text-align: right; width: 13%: border: 1px solid #92241c; background-color: #92241c; color: white; border-radius: 0px 7px 7px 0px; padding-right: 1px;"><b><span t-field="o.amount_total"/></b></td>
                                 </tr>
                             </table>
-                        </div><br/>
+                        </div><br/><br/>
                         
                         <div style="line-height:16px">
                             <small>
