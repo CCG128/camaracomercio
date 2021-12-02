@@ -2,7 +2,9 @@
 <odoo>
     <template id="camaracomercio.report_factura_electronica">
         <t t-call="web.html_container">
+            <t t-set="data_report_margin_bottom" t-value="2"/>
             <t t-foreach="docs" t-as="o">
+                <div class="article">
                     <div t-attf-class="header" t-att-style="report_header_style">
                         <div class="row" style="page-break-inside: avoid">
                             <div class="col-3">
@@ -35,31 +37,32 @@
                             </div> 
                         </div>
                     </div>
-                    <div class="page">
-                        <table style="border: 1px solid black; border-radius: 7px;page-break-inside:avoid">
-                            <tr style="font-size: smaller;">
-                                <td style="width: 13%;"> Nombre: </td>
-                                <td colspan="3" ><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.name"/></td>
-                                <td style="width: 7%;"> Nit: </td>
-                                <td style="width: 17%;"><span t-field="o.partner_id.vat"/></td>
-                            </tr>
-                            <tr style="font-size: smaller;">
-                                <td> Dirección: </td>
-                                <td colspan="3"><span t-field="o.partner_id.contact_address_complete"/></td>
-                                <td> Código: </td>
-                                <td><span t-field="o.partner_id.ref"/></td>
-                            </tr>
-                            <tr style="font-size: smaller;">
-                                <td> Forma de Pago: </td>
-                                <td><span t-field="o.invoice_payment_term_id"/></td>
-                                <td style="width: 7%;"> Cobrador: </td>
-                                <td style="width: 17%;"><span t-field="o.cobrador_id.name"/></td>
-                                <td> Vendedor: </td>
-                                <td><span t-field="o.invoice_user_id.name"/></td>
-                           </tr>
-                        </table><br/>
+                    <div class="page" style="page-break-inside: always">
+                        <div style="border: 1px solid black; border-radius: 7px; width: 100%; position: relative; page-break-inside:avoid">
+                            <table style="width: 100%;">
+                                <tr style="font-size: smaller;">
+                                    <td style="width: 7%;padding-left: 2px;"> Nombre: </td>
+                                    <td><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.name"/></td>
+                                    <td style="width: 10%;"> Nit: </td>
+                                    <td style="width: 20%;"><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id.vat"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.vat"/></td>
+                                </tr>
+                                <tr style="font-size: smaller;">
+                                    <td style="padding-left: 2px;"> Dirección: </td>
+                                    <td><span t-field="o.partner_id.contact_address_complete"/></td>
+                                    <td> Código: </td>
+                                    <td><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id.ref"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.ref"/>
+                                        <span t-field="o.partner_id.ref"/></td>
+                                </tr>
+                                <tr style="font-size: smaller;">
+                                    <td style="padding-left: 2px;"> Cobrador: </td>
+                                    <td><span t-field="o.cobrador_id.name"/></td>
+                                    <td> Vendedor: </td>
+                                    <td><span t-field="o.invoice_user_id.name"/></td>
+                               </tr>
+                            </table>
+                        </div><br/>
                         
-                        <table style="border: 1px solid #92241c; border-radius: 7px; background-color: #92241c; color: white; width: 100%">
+                        <table style="border: 1px solid white; border-radius: 7px; background-color: #92241c; color: white; width: 100%">
                             <tr style="font-size: smaller; text-align: center;">
                                 <td style="width: 9%">Cantidad</td>
                                 <td style="width: 65%">Descripción</td>
@@ -68,30 +71,39 @@
                             </tr>
                         </table>
                         
-                        <div style="min-height: 17cm; border: 1px solid black; border-radius: 7px; width: 100%; position: relative;">
+                        <div style="min-height: 18cm; border: 1px solid black; border-radius: 7px; width: 100%; position: relative;">
                             <table style="width: 100%">
                                 <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
                                 <t t-foreach="lines" t-as="line">
                                     <tr style="font-size: smaller;">
-                                        <td style="width: 9%"><span t-field="line.quantity"/></td>
+                                        <td style="width: 9%; padding-left: 2px;"><span t-field="line.quantity"/></td>
                                         <td style="width: 65%"><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
                                         <td style="width: 13%"><span t-field="line.price_unit"/></td>
                                         <td style="width: 13%"><span class="text-nowrap" t-field="line.price_total"/></td>
                                     </tr>
                                 </t>
                             </table>
+                            <div style="position: absolute; bottom: 100px; width: 100%;padding-left: 2px;">
+                                <p style="font-size: smaller;"><span t-field="o.narration"/></p>
+                            </div>
                             <div style="position: absolute; bottom: 5px; width: 100%">
                                 <table style="width: 100%">
                                     <tr style="font-size: smaller;">
                                         <td style="text-align: right; width: 74%">Sub total:</td>
                                         <td style="text-align: right; width: 26%"><span t-field="o.amount_untaxed"/></td>
                                     </tr>
+                                    <t t-foreach="o.amount_by_group" t-as="amount">
+                                        <tr t-if="'Impuestos' in amount[0]" style="font-size: smaller;">
+                                            <td style="text-align: right;">TP</td>
+                                            <td style="text-align: right;"><span t-esc="amount[3]"/></td>
+                                        </tr>
+                                        <tr t-if="'IVA' in amount[0]" style="font-size: smaller;">
+                                            <td style="text-align: right;">Impuestos</td>
+                                            <td style="text-align: right;"><span t-esc="amount[3]"/></td>
+                                        </tr>
+                                    </t>
                                     <tr style="font-size: smaller;">
-                                        <td style="text-align: right;">Impuestos</td>
-                                        <td style="text-align: right;"><span t-field="o.amount_tax"/></td>
-                                    </tr>
-                                    <tr style="font-size: smaller;">
-                                        <td colspan="2" style="width: 9%"><span t-if="o.move_type == 'out_invoice'">Sujeto a pagos trimestrales ISR</span></td>
+                                        <td colspan="2" style="width: 9%; padding-left: 2px;"><span t-if="o.move_type == 'out_invoice'">Sujeto a pagos trimestrales ISR</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -100,14 +112,14 @@
                         <div>
                             <table style="width: 100%">
                                 <tr style="font-size: smaller;">
-                                    <td style="width: 74%">Total en Letras: <span t-esc="a_letras(o.amount_total)"/></td>
+                                    <td style="width: 74%;">Total en Letras: <span t-esc="a_letras(o.amount_total)"/></td>
                                     <td style="width: 13%; border: 1px solid #92241c; background-color: #92241c; color: white; border-radius: 7px 0px 0px 7px;"><b>Total</b></td>
-                                    <td style="text-align: right; width: 13%: border: 1px solid #92241c; background-color: #92241c; color: white; border-radius: 0px 7px 7px 0px;"><b><span t-field="o.amount_total"/></b></td>
+                                    <td style="text-align: right; width: 13%: border: 1px solid #92241c; background-color: #92241c; color: white; border-radius: 0px 7px 7px 0px; padding-right: 1px;"><b><span t-field="o.amount_total"/></b></td>
                                 </tr>
                             </table>
                         </div><br/>
                         
-                        <div>
+                        <div style="line-height:16px">
                             <small>
                                 <b>Fecha de certificación:</b> <span t-field="o.invoice_date"/><br/>
                                 <b>Número de autorización:</b> <span t-field="o.firma_fel"/> <br/>
@@ -116,15 +128,11 @@
                                 <b>Documento:</b> <span t-field="o.name"/>
                                 <br/><br/>
                                 <span t-if="'Recibo' in o.journal_id.name">EXENTO DEL IVA SEGÚN ART. 7 INCISO 10 DEL DECRETO 27-92. EXENTO 
-                                DEL ISR SEGÚN ARTICULO 11 CONFORME AL LIBRO I DEL DECRETO 10-2012. <br/>
-                                NO SE CONSIDERA CANCELADO ESTE DOCUMENTO SI NO ESTA AMPARADO CON EL RECIBO DE CAJA OFICIAL DE LA ENTIDAD EXTENDIDO POR EL CAJERO, COBRADOR O VENDEDOR.<br/>
-                                POR CHEQUE RECHAZADO SE COBRARA Q.100.00 </span>
-                                <span t-if="o.move_type == 'out_invoice' and 'Recibo' not in o.journal_id.name">NO SE CONSIDERA CANCELADO ESTE 
-                                DOCUMENTO SI NO ESTA AMPARADO CON EL RECIBO DE CAJA OFICIAL DE LA ENTIDAD EXTENDIDO POR EL CAJERO, COBRADOR O VENDEDOR. <br/>
-                                POR CHEQUE RECHAZADO SE COBRARA Q.100.00</span>
+                                DEL ISR SEGÚN ARTICULO 11 CONFORME AL LIBRO I DEL DECRETO 10-2012.<br/></span>
                             </small>
                         </div>
                     </div>
+                </div>
             </t>
         </t>
     </template>
