@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-5 text-center">
                                 <small><div t-field="o.company_id.partner_id"
-                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email", "website"], "no_marker": true}'
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email", "website", "vat"], "no_marker": true}'
                                 /></small>
                             </div>
                             <div class="col-4 text-center">
@@ -20,8 +20,8 @@
                                    <table style="width:100%">
                                        <tr>
                                            <td colspan="2" style="text-align: center; border: 1px solid white; border-radius: 7px; background-color: #92241c; color: white;"><b>Documento Tributario Electrónico<br/>
-                                               <span t-if="'Recibo' in o.journal_id.name">Recibo</span>
-                                               <span t-if="o.move_type == 'out_invoice' and 'Recibo' not in o.journal_id.name">Factura</span>
+                                               <span t-if="o.journal_id.tipo_documento_fel == 'RECI'">Recibo</span>
+                                               <span t-if="o.move_type == 'out_invoice' and 'Recibo' not in o.journal_id.name">Facturas</span>
                                                <span t-if="o.move_type == 'out_refund'">Nota de Crédito</span>
                                                <br/></b></td>
                                        </tr>
@@ -127,7 +127,7 @@
                                 <b>Referencia interna:</b> <span t-field="o.payment_reference"/> <br/>
                                 <b>Documento:</b> <span t-field="o.name"/>
                                 <br/><br/>
-                                <span t-if="'Recibo' in o.journal_id.name">EXENTO DEL IVA SEGÚN ART. 7 INCISO 10 DEL DECRETO 27-92. EXENTO 
+                                <span t-if="o.journal_id.tipo_documento_fel == 'RECI'">EXENTO DEL IVA SEGÚN ART. 7 INCISO 10 DEL DECRETO 27-92. EXENTO 
                                 DEL ISR SEGÚN ARTICULO 11 CONFORME AL LIBRO I DEL DECRETO 10-2012.<br/></span>
                             </small>
                         </div>
