@@ -21,7 +21,7 @@
                                        <tr>
                                            <td colspan="2" style="text-align: center; border: 1px solid white; border-radius: 7px; background-color: #92241c; color: white;"><b>Documento Tributario Electrónico<br/>
                                                <span t-if="o.journal_id.tipo_documento_fel == 'RECI'">Recibo</span>
-                                               <span t-if="o.move_type == 'out_invoice' and 'Recibo' not in o.journal_id.name">Facturas</span>
+                                               <span t-if="o.move_type == 'out_invoice' and o.journal_id.tipo_documento_fel != 'RECI'">Facturas</span>
                                                <span t-if="o.move_type == 'out_refund'">Nota de Crédito</span>
                                                <br/></b></td>
                                        </tr>
