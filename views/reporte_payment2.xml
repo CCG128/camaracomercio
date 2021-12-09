@@ -7,7 +7,8 @@
           <t t-set="data_report_dpi" t-value="110"/>
 
           <t t-foreach="docs" t-as="o">
-              <div class="page">
+              <div class="article">
+                  <div class="page">
 
                   <div style="font-size: 130%; position: absolute; top: 3.1cm; left: 4.2cm">
                       GUATEMALA, <span t-field="o.date"/>
@@ -93,6 +94,7 @@
                       </table>
                   </div>
 
+              </div>
               </div>
           </t>
       </t>

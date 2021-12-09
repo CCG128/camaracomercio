@@ -7,213 +7,215 @@
           <t t-set="data_report_dpi" t-value="110"/>
 
           <t t-foreach="docs" t-as="o">
-              <div class="page">
+              <div class="article">
+                  <div class="page">
 
-                  <div style="font-size: 130%; position: absolute; top: 1.8cm; left: 9.5cm">
-                      GUATEMALA, <span t-field="o.date"/>
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 1.8cm; left: 24.5cm">
-                      <span t-esc="'{0:,.2f}'.format(o.amount)"/>
-                  </div>
+                      <div style="font-size: 130%; position: absolute; top: 1.8cm; left: 9.5cm">
+                          GUATEMALA, <span t-field="o.date"/>
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 1.8cm; left: 24.5cm">
+                          <span t-esc="'{0:,.2f}'.format(o.amount)"/>
+                      </div>
 
-                  <div style="font-size: 130%; position: absolute; top: 2.8cm; left: 8cm; width: 18.5cm">
-                      <span t-esc="o.nombre_impreso or o.partner_id.name"/>
-                  </div>
-                  <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 3.7cm; left: 8cm; width: 20cm">
-                      <span t-esc="a_letras(o.amount)"/>
-                  </div>
-                  <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 5.4cm; left: 8.9cm">
-                      <span>NO  NEGOCIABLE</span>
-                  </div>
-                  
+                      <div style="font-size: 130%; position: absolute; top: 2.8cm; left: 8cm; width: 18.5cm">
+                          <span t-esc="o.nombre_impreso or o.partner_id.name"/>
+                      </div>
+                      <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 3.7cm; left: 8cm; width: 20cm">
+                          <span t-esc="a_letras(o.amount)"/>
+                      </div>
+                      <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 5.4cm; left: 8.9cm">
+                          <span>NO  NEGOCIABLE</span>
+                      </div>
 
-                 
-                  <div style="font-size: 130%; position: absolute; top: 14cm; left: 2cm">
-                      BANCO:
-                  </div>
-                  <div style="font-size: 130%;position: absolute; top: 14cm; left: 4.5cm; width: 6cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: right">
-                      <span t-field="o.journal_id.name"/>
-                  </div>
-                 
-                   
-                   
-                  <div style="font-size: 130%; position: absolute; top: 14cm; left: 11cm">
-                      NO. DE CHEQUE:
-                  </div> 
-                   <div style="font-size: 130%;position: absolute; top: 14cm; left: 16cm; width: 6cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: center">
-                      <span t-field="o.move_id.name"/>
-                  </div>
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 14cm; left: 22.5cm">
-                      FECHA:
-                  </div> 
-                  <div style="font-size: 130%; position: absolute; top: 14cm; left: 25cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: center">
-                      <span t-esc="o.date"/>
-                  </div>
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 15.5cm; left: 2cm">
-                      MONTO Q.:
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 15.5cm; left: 5.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: right">
-                      <span t-esc="'{0:,.2f}'.format(o.amount)"/>
-                  </div>
-                  
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 17cm; left: 2cm">
-                      FACTURA ó RECIBO (Incluir concepto / observaciones):
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 17.9cm; left: 2cm; width: 28cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                      <span t-esc="o.ref"/>
-                  </div>
-                  
-                 
-                 
-                  <div style="font-size: 130%; position: absolute; top: 21cm; left: 2cm">
-                      BENEFICIARIO:
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 21cm; left: 6.5cm; width: 15cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                      <span t-esc="o.partner_id.name"/>
-                  </div>
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 2cm; width: 4cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      CUENTA
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 6cm; width: 16cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      PARTIDA
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 22cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      DEBE 
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 25cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      HABER
-                  </div>
-                  
-                  <div style="font-size: 130%; position: absolute; top: 28cm; left: 2cm">
-                      TOTAL:
-                  </div>
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 30cm; left: 2cm; width: 10cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      HECHO POR
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 2cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      NOMBRE
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 5cm; width: 7cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                     .
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 2cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      FIRMA
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 5cm; width: 7cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                      .
-                  </div>
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 30cm; left: 13cm; width: 8cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      REVISADO POR
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 13cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      NOMBRE
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 16cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                     .
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 13cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      FIRMA
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 16cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                      .
-                  </div>
-                  
-                  
-                  <div style="font-size: 130%; position: absolute; top: 30cm; left: 21.5cm; width: 8cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      RECIVIDO POR
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      NOMBRE
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 24.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                     .
-                  </div>
-                   <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      DPI
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 24.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                      .
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 31.9cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
-                      FIRMA
-                  </div>
-                  <div style="font-size: 130%; position: absolute; top: 31.9cm; left: 24.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
-                      .
-                  </div>
-                  
-                  
 
-                  <div style="position: absolute; top: 24cm; left: 2cm;font-size: 130%;">
-                      <table>
-                          <tbody>
-                              <tr t-foreach="o.move_id.line_ids" t-as="l">
-                                  <td style="width: 4cm">
-                                      <span t-field="l.account_id.code"/>
-                                  </td>
-                                  <td style="width: 13cm">
-                                      <span t-field="l.account_id.name"/>
-                                  </td>
-                                  <td style="width: 3cm">
-                                  </td>
 
-                                  <td style="width: 1.7cm" class="text-right">
-                                      <span t-field="l.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                                  </td>
-                                  <td style="width: 2cm">
-                                  </td>
-                                  <td style="width: 2cm" class="text-right">
-                                      <span t-field="l.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
+                      <div style="font-size: 130%; position: absolute; top: 14cm; left: 2cm">
+                          BANCO:
+                      </div>
+                      <div style="font-size: 130%;position: absolute; top: 14cm; left: 4.5cm; width: 6cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: right">
+                          <span t-field="o.journal_id.name"/>
+                      </div>
+
+
+
+                      <div style="font-size: 130%; position: absolute; top: 14cm; left: 11cm">
+                          NO. DE CHEQUE:
+                      </div>
+                       <div style="font-size: 130%;position: absolute; top: 14cm; left: 16cm; width: 6cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: center">
+                          <span t-field="o.move_id.name"/>
+                      </div>
+
+
+                      <div style="font-size: 130%; position: absolute; top: 14cm; left: 22.5cm">
+                          FECHA:
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 14cm; left: 25cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: center">
+                          <span t-esc="o.date"/>
+                      </div>
+
+
+                      <div style="font-size: 130%; position: absolute; top: 15.5cm; left: 2cm">
+                          MONTO Q.:
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 15.5cm; left: 5.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align: right">
+                          <span t-esc="'{0:,.2f}'.format(o.amount)"/>
+                      </div>
+
+
+
+                      <div style="font-size: 130%; position: absolute; top: 17cm; left: 2cm">
+                          FACTURA ó RECIBO (Incluir concepto / observaciones):
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 17.9cm; left: 2cm; width: 28cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                          <span t-esc="o.ref"/>
+                      </div>
+
+
+
+                      <div style="font-size: 130%; position: absolute; top: 21cm; left: 2cm">
+                          BENEFICIARIO:
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 21cm; left: 6.5cm; width: 15cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                          <span t-esc="o.partner_id.name"/>
+                      </div>
+
+
+                      <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 2cm; width: 4cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          CUENTA
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 6cm; width: 16cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          PARTIDA
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 22cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          DEBE
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 22.5cm; left: 25cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          HABER
+                      </div>
+
+                      <div style="font-size: 130%; position: absolute; top: 28cm; left: 2cm">
+                          TOTAL:
+                      </div>
+
+
+                      <div style="font-size: 130%; position: absolute; top: 30cm; left: 2cm; width: 10cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          HECHO POR
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 2cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          NOMBRE
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 5cm; width: 7cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                         .
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 2cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          FIRMA
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 5cm; width: 7cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                          .
+                      </div>
+
+
+                      <div style="font-size: 130%; position: absolute; top: 30cm; left: 13cm; width: 8cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          REVISADO POR
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 13cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          NOMBRE
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 16cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                         .
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 13cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          FIRMA
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 16cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                          .
+                      </div>
+
+
+                      <div style="font-size: 130%; position: absolute; top: 30cm; left: 21.5cm; width: 8cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          RECIVIDO POR
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          NOMBRE
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 30.7cm; left: 24.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                         .
+                      </div>
+                       <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          DPI
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 31.3cm; left: 24.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                          .
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 31.9cm; left: 21.5cm; width: 3cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid; text-align:center">
+                          FIRMA
+                      </div>
+                      <div style="font-size: 130%; position: absolute; top: 31.9cm; left: 24.5cm; width: 5cm; border-left: black 1px solid; border-bottom: black 1px solid; border-right: black 1px solid; border-top: black 1px solid">
+                          .
+                      </div>
+
+
+
+                      <div style="position: absolute; top: 24cm; left: 2cm;font-size: 130%;">
+                          <table>
+                              <tbody>
+                                  <tr t-foreach="o.move_id.line_ids" t-as="l">
+                                      <td style="width: 4cm">
+                                          <span t-field="l.account_id.code"/>
+                                      </td>
+                                      <td style="width: 13cm">
+                                          <span t-field="l.account_id.name"/>
+                                      </td>
+                                      <td style="width: 3cm">
+                                      </td>
+
+                                      <td style="width: 1.7cm" class="text-right">
+                                          <span t-field="l.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                      </td>
+                                      <td style="width: 2cm">
+                                      </td>
+                                      <td style="width: 2cm" class="text-right">
+                                          <span t-field="l.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
+                      <div style="position: absolute; top: 28cm; left: 2cm;font-size: 130%; ; border-bottom: black 5px solid">
+                          <table>
+                              <tbody>
+                                  <tr>
+                                      <td style="width: 20.5cm">
+                                      </td>
+                                      <td style="width: 2.9cm" class="text-right">
+                                          <span t-esc="totales(o)['debito']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                      </td>
+                                      <td style="width: 1.2cm">
+                                      </td>
+                                      <td style="width: 2cm" class="text-right">
+                                          <span t-esc="totales(o)['credito']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
+                      <div style="position: absolute; top: 30.7cm; left: 5cm;font-size: 130%">
+                          <table>
+                              <tbody>
+                                  <tr>
+                                      <td style="width: 0cm">
+                                          <span t-field="user.name"/>
+                                      </td>
+                                      <td style="width: 1">
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
                   </div>
-
-                  <div style="position: absolute; top: 28cm; left: 2cm;font-size: 130%; ; border-bottom: black 5px solid">
-                      <table>
-                          <tbody>
-                              <tr>
-                                  <td style="width: 20.5cm">
-                                  </td>
-                                  <td style="width: 2.9cm" class="text-right">
-                                      <span t-esc="totales(o)['debito']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                                  </td>
-                                  <td style="width: 1.2cm">
-                                  </td>
-                                  <td style="width: 2cm" class="text-right">
-                                      <span t-esc="totales(o)['credito']" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-
-                  <div style="position: absolute; top: 30.7cm; left: 5cm;font-size: 130%">
-                      <table>
-                          <tbody>
-                              <tr>
-                                  <td style="width: 0cm">
-                                      <span t-field="user.name"/>
-                                  </td>
-                                  <td style="width: 1">
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-
               </div>
           </t>
       </t>
