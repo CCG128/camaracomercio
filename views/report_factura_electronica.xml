@@ -82,7 +82,8 @@
                                     </tr>
                                 </t>
                             </table>
-                            <div style="position: absolute; bottom: 100px; width: 100%;padding-left: 2px;">
+                            <div style="width: 100%;padding-left: 2px;">
+                                <br/><br/><br/>
                                 <p style="font-size: smaller;"><span t-field="o.narration"/></p>
                             </div>
                             <div style="position: absolute; bottom: 5px; width: 100%">
