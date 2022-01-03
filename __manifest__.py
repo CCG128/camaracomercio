@@ -14,7 +14,7 @@
     'category': 'Uncategorized',
     'version': '0.1',
 
-    'depends': ['account','product','contacts','purchase','event_sale','helpdesk'],
+    'depends': ['account','product','contacts','purchase','event_sale','helpdesk','account_reports','fel_ccg'],
 
     'data': [
         'security/camaracomercio_security.xml',
