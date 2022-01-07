@@ -34,7 +34,7 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="camaracomercio_read_estado_view_res_partner_form">
+        <!-- <record model="ir.ui.view" id="camaracomercio_read_estado_view_res_partner_form">
             <field name="name">camaracomercio.read.view.partner.form</field>
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
@@ -80,7 +80,7 @@
                     <attribute name="attrs">{'readonly':[('estado','in', ['afiliado_activo'])]}</attribute>
                 </xpath>
             </field>
-        </record>
+        </record> -->
 
     </data>
 </odoo>

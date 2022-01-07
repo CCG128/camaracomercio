@@ -10,7 +10,7 @@ class ResPartner(models.Model):
         ('afiliado_activo', 'Afiliado / Activo'),
         ('afiliado_moroso', 'Afiliado / Moroso'),
         ('afiliado_retirar', 'Afiliado / Por retirar')],'Estado', default='no_afiliado')
-        
+
     cobrador_id = fields.Many2one('hr.employee','Cobrador')
 
     @api.onchange('estado')
@@ -19,3 +19,10 @@ class ResPartner(models.Model):
             estado_ids = self.env['camaracomercio.config.estado'].search([('estado','=',self.estado)])
             if estado_ids:
                 self.property_product_pricelist = estado_ids[0].tarifa_id.id
+
+    def write(self, vals):
+        if vals:
+            if self.env.user.has_group('camaracomercio.group_camaracomercio_bloquear_edi_contacto') and self.estado != 'no_afiliado':
+                return False
+            else:
+                return super(ResPartner, self).write(vals)
