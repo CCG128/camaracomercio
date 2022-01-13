@@ -41,17 +41,16 @@
                         <div style="border: 1px solid black; border-radius: 7px; width: 100%; position: relative; page-break-inside:avoid">
                             <table style="width: 100%;">
                                 <tr style="font-size: smaller;">
-                                    <td style="width: 7%;padding-left: 2px;"> Nombre: </td>
-                                    <td><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.name"/></td>
-                                    <td style="width: 10%;"> Nit: </td>
-                                    <td style="width: 20%;"><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id.vat"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.vat"/></td>
+                                    <td style="width: 8%;padding-left: 2px;"> Nombre: </td>
+                                    <td><span t-field="o.partner_id.nombre_facturacion_fel"/></td>
+                                    <td style="width: 8%;"> Nit: </td>
+                                    <td style="width: 20%;"><span t-field="o.partner_id.vat"/></td>
                                 </tr>
                                 <tr style="font-size: smaller;">
                                     <td style="padding-left: 2px;"> Dirección: </td>
                                     <td><span t-field="o.partner_id.contact_address_complete"/></td>
                                     <td> Código: </td>
-                                    <td><span t-if="o.partner_id.parent_id" t-field="o.partner_id.parent_id.ref"/> <span t-if="not o.partner_id.parent_id" t-field="o.partner_id.ref"/>
-                                        <span t-field="o.partner_id.ref"/></td>
+                                    <td><span t-field="o.partner_id.id"/></td>
                                 </tr>
                                 <tr style="font-size: smaller;">
                                     <td style="padding-left: 2px;"> Cobrador: </td>
@@ -83,7 +82,8 @@
                                     </tr>
                                 </t>
                             </table>
-                            <div style="position: absolute; bottom: 100px; width: 100%;padding-left: 2px;">
+                            <div style="width: 100%;padding-left: 2px;">
+                                <br/><br/><br/>
                                 <p style="font-size: smaller;"><span t-field="o.narration"/></p>
                             </div>
                             <div style="position: absolute; bottom: 5px; width: 100%">
