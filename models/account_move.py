@@ -8,22 +8,32 @@ import logging
 
 class AccountMove(models.Model):
     _inherit = "account.move"
-    
+
     cobrador_id = fields.Many2one('hr.employee','Cobrador', related='partner_id.cobrador_id')
 
     def action_post(self):
-        res = super(AccountMove, self).action_post()
         if self.move_type in ["out_invoice","out_refund"] and self.invoice_line_ids:
             if self.partner_id.property_product_pricelist and self.amount_residual > 0:
                 self.verificar_estado_cliente(self.invoice_date,self.partner_id)
             self.verificar_productos_diferentes(self.journal_id,self.invoice_line_ids)
-        return res
+        return super(AccountMove, self).action_post()
 
     def verificar_productos_diferentes(self,journal_id,invoice_line_ids):
         productos_diferentes = []
+        diario_id = False
+        if len(invoice_line_ids) > 0 and invoice_line_ids[0].product_id.product_tmpl_id.diario_id:
+            diario_id = invoice_line_ids[0].product_id.product_tmpl_id.diario_id.id
+            invoice_line_ids[0].move_id.journal_id = invoice_line_ids[0].product_id.product_tmpl_id.diario_id.id
+            
         for linea in invoice_line_ids:
-            if linea.product_id.product_tmpl_id.diario_id.id != journal_id.id:
-                productos_diferentes.append(linea.product_id.name)
+            if linea.product_id.product_tmpl_id.diario_id:
+                if diario_id:
+                    if linea.product_id.product_tmpl_id.diario_id.id != diario_id:
+                        productos_diferentes.append(linea.product_id.name)
+                else:
+                    if linea.product_id.product_tmpl_id.diario_id.id != journal_id.id:
+                        productos_diferentes.append(linea.product_id.name)
+
         if len(productos_diferentes) > 0:
             raise UserError(_('El diario de los siguientes productos '+ str(productos_diferentes) +' debe de ser el mismo que el de la factura'))
         else:
