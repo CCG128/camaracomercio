@@ -10,20 +10,20 @@
               <div class="article">
                   <div class="page">
 
-                  <div style="font-size: 130%; position: absolute; top: 3.1cm; left: 4.2cm">
+                  <div style="font-size: 130%; position: absolute; top: 3.1cm; left: 4.2cm; text-align: justify; letter-spacing: 0.2em">
                       GUATEMALA, <span t-field="o.date"/>
                   </div>
-                  <div style="font-size: 130%; position: absolute; top: 3.4cm; left: 22.8cm">
+                  <div style="font-size: 130%; position: absolute; top: 3.4cm; left: 22.8cm; text-align: justify; letter-spacing: 0.2em">
                       <span t-esc="'{0:,.2f}'.format(o.amount)"/>
                   </div>
 
-                  <div style="font-size: 130%; position: absolute; top: 4.2cm; left: 4.6cm; width: 19cm">
+                  <div style="font-size: 130%; position: absolute; top: 4.2cm; left: 4.6cm; width: 19cm; text-align: justify; letter-spacing: 0.2em">
                       <span t-esc="o.nombre_impreso or o.partner_id.name"/>
                   </div>
-                  <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 5.4cm; left: 4cm; width: 20cm">
+                  <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 5.4cm; left: 4cm; width: 20cm; text-align: justify; letter-spacing: 0.2em">
                       <span t-esc="a_letras(o.amount)"/>
                   </div>
-                  <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 8cm; left: 3cm">
+                  <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 8cm; left: 3cm; font-weight: bold">
                       <span>NO  NEGOCIABLE</span>
                   </div>
                   
