@@ -27,7 +27,7 @@
                           <span>NO  NEGOCIABLE</span>
                       </div>
                       <div style="font-size: 130%; position: absolute; top: 12cm; left: 2cm; width: 15cm; font-family: arial">
-                          DESCIPCION:  <span t-field="o.descripcion"/>
+                          DESCRIPCION:  <span t-field="o.descripcion"/>
                       </div>
                       <div style="font-size: 130%; position: absolute; top: 21cm; left: 2cm; width: 15cm; font-family: arial">
                           MEMO:  <span t-field="o.ref"/>
