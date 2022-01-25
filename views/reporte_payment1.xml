@@ -10,58 +10,71 @@
               <div class="article">
                   <div class="page">
 
-                      <div style="font-size: 130%; position: absolute; top: 3cm; left: 4.2cm">
+                      <div style="font-size: 110%; position: absolute; top: 3cm; left: 4.2cm">
                           GUATEMALA, <span t-field="o.date"/>
                       </div>
-                      <div style="font-size: 130%; position: absolute; top: 3cm; left: 22.2cm">
+                      <div style="font-size: 110%; position: absolute; top: 3cm; left: 22.2cm">
                           <span t-esc="'{0:,.2f}'.format(o.amount)"/>
                       </div>
 
-                      <div style="font-size: 130%; position: absolute; top: 4cm; left: 4.3cm; width: 19cm">
+                      <div style="font-size: 110%; position: absolute; top: 4cm; left: 4.3cm; width: 19cm">
                           <span t-esc="o.nombre_impreso or o.partner_id.name"/>
                       </div>
-                      <div style="font-size: 130%; text-transform: uppercase; position: absolute; top: 5.3cm; left: 4cm; width: 20cm">
+                      <div style="font-size: 110%; text-transform: uppercase; position: absolute; top: 5.3cm; left: 4cm; width: 20cm">
                           <span t-esc="a_letras(o.amount)"/>
                       </div>
                       <div t-if="o.no_negociable == True" style="font-size: 130%; position: absolute; top: 8cm; left: 3cm">
                           <span>NO  NEGOCIABLE</span>
                       </div>
-                      <div style="font-size: 130%; position: absolute; top: 12cm; left: 2cm; width: 15cm">
-                          DESCIPCION:  <span t-field="o.ref"/>
+                      <div style="font-size: 110%; position: absolute; top: 12cm; left: 2cm; width: 15cm">
+                          DESCIPCION:  <span t-field="o.descripcion"/>
+                      </div>
+                      <div style="font-size: 110%; position: absolute; top: 21cm; left: 2cm; width: 15cm">
+                          MEMO:  <span t-field="o.ref"/>
                       </div>
 
-                      <div style="font-size: 130%;position: absolute; top: 22cm; left: 2cm; width: 15cm">
+                      <div style="font-size: 110%;position: absolute; top: 22cm; left: 2cm; width: 15cm">
                           NO.  DE  CHEQUE:  <span t-field="o.move_id.name"/>
                       </div>
 
 
-                      <div style="position: absolute; top: 14cm; left: 2cm;font-size: 130%;">
-                          <table>
-                              <tbody>
-                                  <tr t-foreach="o.move_id.line_ids" t-as="l">
-                                      <td style="width: 0cm">
-                                          <span t-field="l.account_id.code"/>
-                                      </td>
-                                      <td style="width: 13.5cm">
-                                          <span t-field="l.account_id.name"/>
-                                      </td>
-                                      <td style="width: 3cm">
-                                      </td>
+                      <div style="position: absolute; top: 14cm; left: 1cm;font-size: 130%;">
+                      <table>
+                          <tbody>
+                              <tr t-foreach="o.move_id.line_ids" t-as="l">
+                                  <td style="width: 4cm">
+                                      <span t-field="l.account_id.code"/>
+                                  </td>
+                                  <td style="width: 10cm">
+                                      <span t-field="l.account_id.name"/>
+                                  </td>
+                                  <td style="width: 3cm">
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
 
-                                      <td style="width: 1.7cm" class="text-right">
-                                          <span t-field="l.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                                      </td>
-                                      <td style="width: 1cm">
-                                      </td>
-                                      <td style="width: 2cm" class="text-right">
-                                          <span t-field="l.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
+                  <div style="position: absolute; top: 14cm; left: 1.3cm;font-size: 130%;">
+                      <table>
+                          <tbody>
+                              <tr t-foreach="o.move_id.line_ids" t-as="l">
+                                  <td style="width: 18.5cm">
+                                  </td>
+                                   <td style="width: 2.9cm" class="text-right">
+                                      <span t-field="l.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                  </td>
+                                  <td style="width: 0.5cm">
+                                  </td>
+                                  <td style="width: 2cm" class="text-right">
+                                      <span t-field="l.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
 
-                      <div style="position: absolute; top: 22cm; left: 1.3cm;font-size: 130%;">
+                      <div style="position: absolute; top: 22cm; left: 1.3cm;font-size: 110%;">
                           <table>
                               <tbody>
                                   <tr>
@@ -80,7 +93,7 @@
                           </table>
                       </div>
 
-                      <div style="position: absolute; top: 29cm; left: 1.5cm;font-size: 130%;">
+                      <div style="position: absolute; top: 29cm; left: 1.5cm;font-size: 110%;">
                           <table>
                               <tbody>
                                   <tr>

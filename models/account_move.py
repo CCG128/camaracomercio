@@ -17,7 +17,11 @@ class AccountMove(models.Model):
                 logging.warning('test1')
                 self.verificar_estado_cliente(self.invoice_date,self.partner_id)
             self.verificar_productos_diferentes(self.journal_id,self.invoice_line_ids)
+            
+        if self.serie_fel and self.numero_fel:
+            self.ref = self.serie_fel + ' - ' + self.numero_fel
         return super(AccountMove, self).action_post()
+
 
     def verificar_productos_diferentes(self,journal_id,invoice_line_ids):
         productos_diferentes = []

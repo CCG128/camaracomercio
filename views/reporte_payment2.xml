@@ -27,7 +27,10 @@
                       <span>NO  NEGOCIABLE</span>
                   </div>
                   <div style="font-size: 130%; position: absolute; top: 12cm; left: 2cm; width: 15cm">
-                      DESCIPCION:  <span t-field="o.ref"/>
+                      DESCIPCION:  <span t-field="o.descripcion"/>
+                  </div>
+                  <div style="font-size: 130%; position: absolute; top: 21cm; left: 2cm; width: 15cm">
+                      MEMO:  <span t-field="o.ref"/>
                   </div>
 
                   <div style="font-size: 130%;position: absolute; top: 22cm; left: 2cm; width: 15cm">
@@ -39,19 +42,29 @@
                       <table>
                           <tbody>
                               <tr t-foreach="o.move_id.line_ids" t-as="l">
-                                  <td style="width: 0cm">
+                                  <td style="width: 4cm">
                                       <span t-field="l.account_id.code"/>
                                   </td>
-                                  <td style="width: 13.5cm">
+                                  <td style="width: 10cm">
                                       <span t-field="l.account_id.name"/>
                                   </td>
                                   <td style="width: 3cm">
                                   </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
 
-                                  <td style="width: 1.7cm" class="text-right">
+                  <div style="position: absolute; top: 14cm; left: 1.3cm;font-size: 130%;">
+                      <table>
+                          <tbody>
+                              <tr t-foreach="o.move_id.line_ids" t-as="l">
+                                  <td style="width: 18.5cm">
+                                  </td>
+                                   <td style="width: 2.9cm" class="text-right">
                                       <span t-field="l.debit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
                                   </td>
-                                  <td style="width: 1cm">
+                                  <td style="width: 0.5cm">
                                   </td>
                                   <td style="width: 2cm" class="text-right">
                                       <span t-field="l.credit" t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
@@ -60,6 +73,7 @@
                           </tbody>
                       </table>
                   </div>
+
 
                   <div style="position: absolute; top: 22cm; left: 1.3cm;font-size: 130%;">
                       <table>
