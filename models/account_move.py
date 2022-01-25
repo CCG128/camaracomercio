@@ -14,6 +14,7 @@ class AccountMove(models.Model):
     def action_post(self):
         if self.move_type in ["out_invoice","out_refund"] and self.invoice_line_ids:
             if self.partner_id.property_product_pricelist and self.amount_residual > 0:
+                logging.warning('test1')
                 self.verificar_estado_cliente(self.invoice_date,self.partner_id)
             self.verificar_productos_diferentes(self.journal_id,self.invoice_line_ids)
         return super(AccountMove, self).action_post()
@@ -24,7 +25,7 @@ class AccountMove(models.Model):
         if len(invoice_line_ids) > 0 and invoice_line_ids[0].product_id.product_tmpl_id.diario_id:
             diario_id = invoice_line_ids[0].product_id.product_tmpl_id.diario_id.id
             invoice_line_ids[0].move_id.journal_id = invoice_line_ids[0].product_id.product_tmpl_id.diario_id.id
-            
+
         for linea in invoice_line_ids:
             if linea.product_id.product_tmpl_id.diario_id:
                 if diario_id:
@@ -45,11 +46,11 @@ class AccountMove(models.Model):
         estado_tarifa_ids = self.env['camaracomercio.config.estado'].search([('tarifa_id','=',partner_id.property_product_pricelist.id),('estado','=', partner_id.estado),('bloquear_cliente','=',True)])
         if facturas_ids and estado_tarifa_ids:
             for factura in facturas_ids:
-                if factura.invoice_payment_term_id:
-                    dias_vencimiento = factura.invoice_payment_term_id.line_ids[0].days
-                    fecha_vencimiento = factura.invoice_date + timedelta(days=dias_vencimiento)
+                if factura.invoice_date_due:
+                    # dias_vencimiento = factura.invoice_payment_term_id.line_ids[0].days
+                    # fecha_vencimiento = factura.invoice_date + timedelta(days=dias_vencimiento)
                     fecha_hoy = fields.Date.today()
-                    dias_retraso = (fecha_hoy - fecha_vencimiento).days + 1
+                    dias_retraso = (fecha_hoy - factura.invoice_date_due).days + 1
                     for estado_tarifa in estado_tarifa_ids:
                         if dias_retraso >= estado_tarifa.dias:
                             raise UserError(_('Usuario bloqueado, existen facturas con dias dias de retraso mayor igual a '+ str(estado_tarifa.dias)))
