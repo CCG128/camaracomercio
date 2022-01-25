@@ -47,8 +47,6 @@ class AccountMove(models.Model):
         if facturas_ids and estado_tarifa_ids:
             for factura in facturas_ids:
                 if factura.invoice_date_due:
-                    # dias_vencimiento = factura.invoice_payment_term_id.line_ids[0].days
-                    # fecha_vencimiento = factura.invoice_date + timedelta(days=dias_vencimiento)
                     fecha_hoy = fields.Date.today()
                     dias_retraso = (fecha_hoy - factura.invoice_date_due).days + 1
                     for estado_tarifa in estado_tarifa_ids:
