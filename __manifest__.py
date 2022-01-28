@@ -38,5 +38,6 @@
         'views/reporte_payment8.xml',
         'views/report.xml',
         'views/report_factura_electronica.xml',
+        'wizard/reporte_cobros_view.xml'
     ],
 }

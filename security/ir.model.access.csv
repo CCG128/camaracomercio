@@ -5,3 +5,4 @@ access_camaracomercio_config_estado_admin,camara.comercio.config.estado.admin,ca
 access_camaracomercio_config_miembro_admin,camara.comercio.config.miembro.admin,camaracomercio.model_camaracomercio_config_miembros,base.group_system,1,1,1,1
 access_camaracomercio_config_miembro_user,camara.comercio.config.miembro.user,camaracomercio.model_camaracomercio_config_miembros,base.group_user,1,0,0,0
 access_camaracomercio_no_editar_contacto,camara.comercio.no.editar.comercio,base.model_res_partner,camaracomercio.group_camaracomercio_bloquear_edi_contacto,1,0,1,0
+access_camaracomercio_reporte_cobros_wizard,Camaracomercio.reporte.cobros.wizard,camaracomercio.model_camaracomercio_reporte_cobros_wizard,base.group_user,1,1,1,1
