@@ -32,40 +32,30 @@ class camaracomercio_reporte_cobros_wizard(models.TransientModel):
 
             hoja.write(2, 0, 'Código cliente')
             hoja.write(2, 1, 'Cliente')
-            hoja.write(2, 2, 'Fecha')
+            hoja.write(2, 2, 'Fecha de pago')
             hoja.write(2, 3, 'Factura / Recibo')
             hoja.write(2, 4, 'Vendedor')
             hoja.write(2, 5, 'Cobrador')
             hoja.write(2, 6, 'Recibo de Caja')
             hoja.write(2, 7, 'Documento')
-            hoja.write(2, 8, 'Fecha')
-            hoja.write(2, 9, 'Cuenta Analitica')
-            hoja.write(2, 10, 'Descripción')
-            hoja.write(2, 11, 'Valor Sin IVA')
-            hoja.write(2, 12, 'IVA')
-            hoja.write(2, 13, 'Total')
+            hoja.write(2, 8, 'Fecha de factura')
+            hoja.write(2, 9, 'Total')
             fila = 3
             if pago_ids:
                 for pago in pago_ids:
                     if pago.reconciled_invoice_ids:
                         for factura in  pago.reconciled_invoice_ids:
-                            if factura.invoice_line_ids:
-                                for linea in factura.invoice_line_ids:
-                                    hoja.write(fila, 0, factura.partner_id.id)
-                                    hoja.write(fila, 1, factura.partner_id.name)
-                                    hoja.write(fila, 2, str(pago.date))
-                                    hoja.write(fila, 3, factura.journal_id.tipo_documento_fel)
-                                    hoja.write(fila, 4, factura.invoice_user_id.name)
-                                    hoja.write(fila, 5, factura.cobrador_id.name if factura.cobrador_id else '')
-                                    hoja.write(fila, 6, pago.x_studio_no_de_recibo)
-                                    hoja.write(fila, 7, factura.ref)
-                                    hoja.write(fila, 8, factura.invoice_date)
-                                    hoja.write(fila, 9, linea.analytic_account_id.name if linea.analytic_account_id else '')
-                                    hoja.write(fila, 10, linea.name)
-                                    hoja.write(fila, 11, linea.price_subtotal)
-                                    hoja.write(fila, 12, linea.price_total - linea.price_subtotal)
-                                    hoja.write(fila, 13, linea.price_total)
-                                    fila += 1
+                            hoja.write(fila, 0, factura.partner_id.id)
+                            hoja.write(fila, 1, factura.partner_id.name)
+                            hoja.write(fila, 2, str(pago.date))
+                            hoja.write(fila, 3, factura.journal_id.tipo_documento_fel)
+                            hoja.write(fila, 4, factura.invoice_user_id.name)
+                            hoja.write(fila, 5, factura.cobrador_id.name if factura.cobrador_id else '')
+                            hoja.write(fila, 6, pago.x_studio_no_de_recibo)
+                            hoja.write(fila, 7, factura.ref)
+                            hoja.write(fila, 8, factura.invoice_date)
+                            hoja.write(fila, 9, pago.amount)
+                            fila += 1
 
             libro.close()
             datos = base64.b64encode(f.getvalue())
