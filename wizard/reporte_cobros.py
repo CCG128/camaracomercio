@@ -53,8 +53,7 @@ class camaracomercio_reporte_cobros_wizard(models.TransientModel):
                         if pago.id not in pagos:
                             id_linea = pago.reconciled_invoice_ids[0].invoice_line_ids[0].id
                             linea = pago.reconciled_invoice_ids[0].invoice_line_ids[0]
-                            # factura_recibo = pago.reconciled_invoice_ids[0].journal_id.tipo_documento_fel
-                            factura_recibo = ""
+                            factura_recibo = pago.reconciled_invoice_ids[0].journal_id.tipo_documento_fel
                             factura_primera_linea_id = pago.reconciled_invoice_ids[0].id
                             pagos[pago.id] = {
                                 'pago_id': pago,
@@ -63,8 +62,7 @@ class camaracomercio_reporte_cobros_wizard(models.TransientModel):
                                 'fecha_pago': str(pago.date),
                                 'primera_linea': {'id': id_linea, 'linea': linea},
                                 'lineas_factura': [],
-                                # 'recibo_caja': pago.x_studio_no_de_recibo,
-                                'recibo_caja': "",
+                                'recibo_caja': pago.x_studio_no_de_recibo,
                                 'total_pago': pago.amount,
                                 'facturas_primera_linea': [factura_primera_linea_id],
                                  }
@@ -87,10 +85,10 @@ class camaracomercio_reporte_cobros_wizard(models.TransientModel):
                             hoja.write(fila,12,pagos[pago]['primera_linea']['linea'].analytic_account_id.name if pagos[pago]['primera_linea']['linea'].analytic_account_id else "")
                             hoja.write(fila,13,pagos[pago]['primera_linea']['linea'].price_total)
 
-                        # hoja.write(fila,4, pagos[pago]['pago_id'].x_studio_no_de_recibo)
+                        hoja.write(fila,4, pagos[pago]['pago_id'].x_studio_no_de_recibo)
                         hoja.write(fila,5, pagos[pago]['pago_id'].amount)
                         hoja.write(fila,6, str(pagos[pago]['primera_linea']['linea'].move_id.invoice_date))
-                        # hoja.write(fila,7, pagos[pago]['primera_linea']['linea'].move_id.tipo_documento_fel)
+                        hoja.write(fila,7, pagos[pago]['primera_linea']['linea'].move_id.journal_id.tipo_documento_fel)
                         hoja.write(fila,8, pagos[pago]['primera_linea']['linea'].move_id.invoice_user_id.name)
                         hoja.write(fila,9, pagos[pago]['primera_linea']['linea'].move_id.ref)
 
@@ -103,9 +101,9 @@ class camaracomercio_reporte_cobros_wizard(models.TransientModel):
                                 hoja.write(fila, 1, pagos[pago]['pago_id'].partner_id.name)
                                 hoja.write(fila, 2, str(pagos[pago]['pago_id'].date))
                                 hoja.write(fila, 3, lf.move_id.cobrador_id.name if lf.move_id.cobrador_id else "")
-                                # hoja.write(fila, 4, pagos[pago]['pago_id'].x_studio_no_de_recibo)
+                                hoja.write(fila, 4, pagos[pago]['pago_id'].x_studio_no_de_recibo)
                                 hoja.write(fila, 6, str(lf.move_id.invoice_date))
-                                # hoja.write(fila, 7, lf.move_id.tipo_documento_fel)
+                                hoja.write(fila, 7, lf.move_id.journal_id.tipo_documento_fel)
                                 hoja.write(fila, 8, lf.move_id.invoice_user_id.name)
                                 hoja.write(fila, 9, lf.move_id.ref)
 
