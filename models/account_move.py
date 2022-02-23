@@ -17,20 +17,15 @@ class AccountMove(models.Model):
                 self.verificar_estado_cliente(self.invoice_date,self.partner_id)
             self.verificar_productos_diferentes(self.journal_id,self.invoice_line_ids)
         res = super(AccountMove, self).action_post()
+        if self.journal_id.generar_fel:
+            self._onchange_payment_reference()
         return res
 
     @api.onchange('payment_reference', 'ref','numero_fel','serie_fel')
     def _onchange_payment_reference(self):
         res = super()._onchange_payment_reference()
         self.ref = (self.serie_fel +" - "+ self.numero_fel) if (self.journal_id.generar_fel and self.numero_fel and self.serie_fel) else ''
-
-    def _post(self,soft=True):
-        res = super(AccountMove, self)._post(soft)
-        for factura in self:
-            if factura.journal_id.generar_fel:
-                factura._onchange_payment_reference()
-        return res
-
+        
     def verificar_productos_diferentes(self,journal_id,invoice_line_ids):
         productos_diferentes = []
         diario_id = False
