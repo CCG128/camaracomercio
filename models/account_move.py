@@ -22,10 +22,6 @@ class AccountMove(models.Model):
         return res
 
     def _post(self, soft=True):
-        if self.move_type in ["out_invoice","out_refund"] and self.invoice_line_ids:
-            if self.partner_id.property_product_pricelist and self.amount_residual > 0:
-                self.verificar_estado_cliente(self.invoice_date,self.partner_id)
-            self.verificar_productos_diferentes(self.journal_id,self.invoice_line_ids)
         res = super(AccountMove, self)._post(soft)
         if self.journal_id.generar_fel:
             self._onchange_payment_reference()
